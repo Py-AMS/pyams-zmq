@@ -22,7 +22,7 @@ WARNING: tests coverage results may be incomplete because of multiprocessing usa
 The conversion process is a simple ØMQ process:
 
     >>> from pyramid.testing import setUp, tearDown
-    >>> config = setUp()
+    >>> config = setUp(hook_zca=True)
 
     >>> from pyams_utils import includeme as include_utils
     >>> include_utils(config)
