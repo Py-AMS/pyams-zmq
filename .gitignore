@@ -1,0 +1,11 @@
+
+!/.installed.cfg
+!/eggs/
+!/bin/
+!/parts/
+!/develop-eggs/
+!/src/pyams_zmq/**/__pycache__/
+!/src/pyams_zmq.egg-info/
+/.coverage
+/coverage.xml
+/.scannerwork/
