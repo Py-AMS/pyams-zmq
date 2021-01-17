@@ -77,7 +77,6 @@ The message handler receives the message and handle it:
     >>> class ConversionMessageHandler(ZMQMessageHandler):
     ...     handler = ConversionHandler
 
-    >>> from coverage import Coverage
     >>> class ConversionProcess(ZMQProcess):
     ...     """Medias conversion process"""
 
