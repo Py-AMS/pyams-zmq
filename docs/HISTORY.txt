@@ -1,6 +1,11 @@
 Changelog
 =========
 
+1.1.1
+-----
+ - added exception handler to check for ZMQ errors in process startup and end process
+   if an exception occurs (for example if the requested port is already used)
+
 1.1.0
 -----
  - removed support for Python < 3.7
