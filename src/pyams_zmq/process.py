@@ -63,10 +63,14 @@ class ZMQProcess(multiprocessing.Process):
         """Sets up everything and starts the event loop on process startup"""
         signal.signal(signal.SIGTERM, self.exit)
         # Setup ZeroMQ IO loop
-        self.setup()
-        registry = get_pyramid_registry()
-        registry.notify(ZMQProcessStartedEvent(self))  # pylint: disable=no-member
-        self.loop.start()
+        try:
+            self.setup()
+        except zmq.error.ZMQError:
+            self.exit()
+        else:
+            registry = get_pyramid_registry()
+            registry.notify(ZMQProcessStartedEvent(self))  # pylint: disable=no-member
+            self.loop.start()
 
     def setup(self):
         """Creates a :attr:`context` and an event :attr:`loop` for the process."""
@@ -93,7 +97,7 @@ class ZMQProcess(multiprocessing.Process):
         if self.auth_thread is not None:
             self.auth_thread.stop()
 
-    def exit(self, num, frame):  # pylint: disable=unused-argument
+    def exit(self, num=None, frame=None):  # pylint: disable=unused-argument
         """Process exit"""
         self.stop()
         sys.exit()
